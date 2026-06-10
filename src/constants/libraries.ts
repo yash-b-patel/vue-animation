@@ -18,7 +18,7 @@ export const LIBRARIES: LibraryRoute[] = [
     description:
       "Vue's built-in animation system. Zero dependencies — transition single elements or animate lists with TransitionGroup.",
     category: 'Built-in',
-    component: () => import('../components/DemoPlaceholder.vue'),
+    component: () => import('../demos/VueTransition.vue'),
   },
   {
     id: 'auto-animate',

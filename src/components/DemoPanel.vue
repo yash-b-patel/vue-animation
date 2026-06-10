@@ -1,10 +1,15 @@
 <script setup lang="ts">
-import { ref, computed } from 'vue'
+import { ref, computed, provide } from 'vue'
 import { useRoute } from 'vue-router'
 import { getLibraryByRoute } from '@/constants/libraries'
 
 const route = useRoute()
 const codeOpen = ref(false)
+const codeSnippet = ref('')
+
+provide('setCode', (code: string) => {
+  codeSnippet.value = code
+})
 
 const library = computed(() => getLibraryByRoute(route.path))
 </script>
@@ -35,7 +40,7 @@ const library = computed(() => getLibraryByRoute(route.path))
         <h1 class="mb-1.5 text-[22px] leading-[1.2] font-bold text-gray-900">
           {{ library.name }}
         </h1>
-        <p class="max-w-150 text-sm leading-6 text-gray-500">{{ library.description }}</p>
+        <p class="text-sm leading-6 text-gray-500">{{ library.description }}</p>
       </div>
     </header>
 
@@ -54,11 +59,9 @@ const library = computed(() => getLibraryByRoute(route.path))
         Key code snippet
       </button>
       <div v-if="codeOpen" class="px-8 pb-4">
-        <slot name="code">
-          <p class="m-0 rounded-md bg-gray-100 px-4 py-3 font-mono text-[13px] text-gray-400">
-            // Code snippet goes here — add via slot in each demo component
-          </p>
-        </slot>
+        <pre
+          class="max-h-72 overflow-auto rounded-lg bg-slate-950 p-4 text-[12px] leading-5 whitespace-pre-wrap text-slate-300"
+        ><code>{{ codeSnippet || '// No snippet provided for this demo yet.' }}</code></pre>
       </div>
     </footer>
   </div>
