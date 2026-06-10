@@ -6,6 +6,7 @@ export type LibraryRoute = RouteRecordRaw & {
   npm: string | null
   description: string
   category: string
+  source: () => Promise<{ default: string }>
 }
 
 export const LIBRARIES: LibraryRoute[] = [
@@ -19,6 +20,7 @@ export const LIBRARIES: LibraryRoute[] = [
       "Vue's built-in animation system. Zero dependencies — transition single elements or animate lists with TransitionGroup.",
     category: 'Built-in',
     component: () => import('../demos/VueTransition.vue'),
+    source: () => import('../demos/VueTransition.vue?raw'),
   },
   {
     id: 'auto-animate',
@@ -30,6 +32,7 @@ export const LIBRARIES: LibraryRoute[] = [
       'Add one directive and DOM mutations just animate. No configuration, no keyframes, no effort.',
     category: 'Zero-config',
     component: () => import('../components/DemoPlaceholder.vue'),
+    source: () => import('../components/DemoPlaceholder.vue?raw'),
   },
   {
     id: 'vueuse-motion',
@@ -41,6 +44,7 @@ export const LIBRARIES: LibraryRoute[] = [
       'Composable-based animations with spring physics and scroll-triggered reveals. Built for Vue 3.',
     category: 'Composable',
     component: () => import('../components/DemoPlaceholder.vue'),
+    source: () => import('../components/DemoPlaceholder.vue?raw'),
   },
   {
     id: 'gsap',
@@ -52,6 +56,7 @@ export const LIBRARIES: LibraryRoute[] = [
       'The professional-grade animation platform. Timeline control, stagger, ScrollTrigger, SVG morphing — the full toolkit.',
     category: 'Power tool',
     component: () => import('../components/DemoPlaceholder.vue'),
+    source: () => import('../components/DemoPlaceholder.vue?raw'),
   },
   {
     id: 'motion-one',
@@ -63,6 +68,7 @@ export const LIBRARIES: LibraryRoute[] = [
       'Lightweight animation library built on the Web Animations API. 3kb with timeline and stagger support.',
     category: 'Lightweight',
     component: () => import('../components/DemoPlaceholder.vue'),
+    source: () => import('../components/DemoPlaceholder.vue?raw'),
   },
   {
     id: 'vue-typed',
@@ -74,6 +80,7 @@ export const LIBRARIES: LibraryRoute[] = [
       'Typewriter effect component. Cycles through strings with configurable speed, backspace, and loop behavior.',
     category: 'Text effect',
     component: () => import('../components/DemoPlaceholder.vue'),
+    source: () => import('../components/DemoPlaceholder.vue?raw'),
   },
   {
     id: 'vue-tilt',
@@ -85,6 +92,7 @@ export const LIBRARIES: LibraryRoute[] = [
       'Mouse-tracking parallax tilt on any element. Adds depth and a premium feel to cards and images.',
     category: '3D / Hover',
     component: () => import('../components/DemoPlaceholder.vue'),
+    source: () => import('../components/DemoPlaceholder.vue?raw'),
   },
   {
     id: 'vue-lottie',
@@ -96,6 +104,7 @@ export const LIBRARIES: LibraryRoute[] = [
       'Play After Effects animations exported as JSON. High-quality micro-animations for UI feedback states.',
     category: 'Micro-animation',
     component: () => import('../components/DemoPlaceholder.vue'),
+    source: () => import('../components/DemoPlaceholder.vue?raw'),
   },
   {
     id: 'ts-particles',
@@ -107,6 +116,7 @@ export const LIBRARIES: LibraryRoute[] = [
       'Highly configurable particle engine. Confetti bursts, network graphs, snow, fire — all driven by JSON config.',
     category: 'Particles',
     component: () => import('../components/DemoPlaceholder.vue'),
+    source: () => import('../components/DemoPlaceholder.vue?raw'),
   },
 ]
 

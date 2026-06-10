@@ -1,5 +1,5 @@
 <script setup lang="ts">
-import { computed, provide, ref } from 'vue'
+import { computed, ref, watch } from 'vue'
 import { useRoute } from 'vue-router'
 import { getLibraryByRoute } from '@/constants/libraries'
 
@@ -8,16 +8,22 @@ const codeOpen = ref(false)
 const codeBesideDemo = ref(false)
 const codeSnippet = ref('')
 
-provide('setCode', (code: string) => {
-  codeSnippet.value = code
-})
+const library = computed(() => getLibraryByRoute(route.path))
+
+watch(
+  () => library.value,
+  async () => {
+    if (library.value)
+      codeSnippet.value = library.value
+        ? (await library.value.source()).default
+        : '// No snippet provided for this demo yet.'
+  },
+)
 
 function toggleCodePosition() {
   codeBesideDemo.value = !codeBesideDemo.value
   codeOpen.value = true
 }
-
-const library = computed(() => getLibraryByRoute(route.path))
 </script>
 
 <template>
@@ -89,9 +95,9 @@ const library = computed(() => getLibraryByRoute(route.path))
             {{ codeBesideDemo ? 'Dock below' : 'Dock right' }}
           </button>
         </div>
-        <div v-if="codeOpen" class="px-8 pb-4 bg-slate-950">
+        <div v-if="codeOpen" class="px-8 pb-4">
           <pre
-            class="overflow-auto rounded-lg bg-slate-950 p-4 text-[12px] leading-5 whitespace-pre-wrap text-slate-300"
+            class="h-[calc(100vh-8rem)] overflow-auto rounded-lg bg-slate-950 p-4 text-[12px] leading-5 whitespace-pre-wrap text-slate-300"
           ><code>{{ codeSnippet || '// No snippet provided for this demo yet.' }}</code></pre>
         </div>
       </aside>

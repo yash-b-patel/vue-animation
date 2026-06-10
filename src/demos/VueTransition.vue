@@ -1,12 +1,4 @@
 <script setup lang="ts">
-import { inject, onBeforeUnmount, ref } from 'vue'
-
-const setCode = inject<(code: string) => void>('setCode')
-const showMessage = ref(false)
-let hideTimer: ReturnType<typeof setTimeout> | undefined
-const scriptEnd = '</' + 'script>'
-
-const demoCode = `<script setup lang="ts">
 import { onBeforeUnmount, ref } from 'vue'
 
 const showMessage = ref(false)
@@ -22,42 +14,8 @@ function copyInviteLink() {
   }, 2200)
 }
 
-onBeforeUnmount(() => clearTimeout(hideTimer))
-${scriptEnd}
-
-<template>
-  <button @click="copyInviteLink">Copy invite link</button>
-
-  <!-- Vue adds and removes these classes at the right time. -->
-  <Transition
-    enter-active-class="transition duration-300 ease-out"
-    enter-from-class="translate-y-3 scale-95 opacity-0"
-    enter-to-class="translate-y-0 scale-100 opacity-100"
-    leave-active-class="transition duration-200 ease-in"
-    leave-from-class="translate-y-0 scale-100 opacity-100"
-    leave-to-class="translate-y-2 scale-95 opacity-0"
-  >
-    <div v-if="showMessage">
-      Invite link copied
-    </div>
-  </Transition>
-</template>`
-
-function copyInviteLink() {
-  // Restart the timer when the button is clicked again.
-  clearTimeout(hideTimer)
-  showMessage.value = true
-
-  hideTimer = setTimeout(() => {
-    showMessage.value = false
-  }, 2200)
-}
-
-setCode?.(demoCode)
-
 onBeforeUnmount(() => {
   clearTimeout(hideTimer)
-  setCode?.('')
 })
 </script>
 
