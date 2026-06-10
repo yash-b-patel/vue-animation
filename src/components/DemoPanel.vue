@@ -1,22 +1,27 @@
 <script setup lang="ts">
-import { ref, computed, provide } from 'vue'
+import { computed, provide, ref } from 'vue'
 import { useRoute } from 'vue-router'
 import { getLibraryByRoute } from '@/constants/libraries'
 
 const route = useRoute()
 const codeOpen = ref(false)
+const codeBesideDemo = ref(false)
 const codeSnippet = ref('')
 
 provide('setCode', (code: string) => {
   codeSnippet.value = code
 })
 
+function toggleCodePosition() {
+  codeBesideDemo.value = !codeBesideDemo.value
+  codeOpen.value = true
+}
+
 const library = computed(() => getLibraryByRoute(route.path))
 </script>
 
 <template>
   <div v-if="library" class="flex h-screen flex-col overflow-hidden">
-    <!-- Header -->
     <header class="shrink-0 border-b border-gray-200 bg-white px-8 pt-6 pb-5">
       <div>
         <div class="mb-2.5 flex items-center gap-2">
@@ -44,20 +49,86 @@ const library = computed(() => getLibraryByRoute(route.path))
       </div>
     </header>
 
-    <!-- Demo area — RouterView loads the actual demo component here -->
-    <main class="flex flex-1 items-start justify-center overflow-y-auto bg-gray-50 p-8">
-      <RouterView />
-    </main>
+    <div class="flex min-h-0 flex-1">
+      <!-- RouterView loads the demo here. -->
+      <main class="flex min-w-0 flex-1 items-start justify-center overflow-y-auto bg-gray-50 p-8">
+        <RouterView />
+      </main>
 
-    <!-- Code footer — collapsed by default, swap slot content per demo -->
-    <footer class="shrink-0 border-t border-gray-200 bg-white">
-      <button
-        class="flex w-full cursor-pointer items-center gap-2 border-0 bg-transparent px-8 py-3 text-left text-[13px] font-medium text-gray-700 transition-colors duration-150 hover:bg-gray-50"
-        @click="codeOpen = !codeOpen"
+      <aside
+        v-if="codeBesideDemo"
+        class="min-w-0 overflow-hidden border-l border-gray-200 transition-all duration-300"
+        :class="{ 'w-1/2': codeOpen }"
       >
-        <span>{{ codeOpen ? '▾' : '▸' }}</span>
-        Key code snippet
-      </button>
+        <div class="flex items-center">
+          <button
+            class="flex flex-1 cursor-pointer items-center gap-2 border-0 bg-transparent px-8 py-3 text-left text-[13px] font-medium text-gray-700 transition-colors duration-150 hover:bg-gray-50"
+            type="button"
+            @click="codeOpen = !codeOpen"
+          >
+            <svg
+              class="size-3 transition-transform"
+              :class="{ 'rotate-90': codeOpen }"
+              viewBox="0 0 12 12"
+              fill="none"
+              stroke="currentColor"
+              stroke-width="1.8"
+              aria-hidden="true"
+            >
+              <path d="m4 2 4 4-4 4" />
+            </svg>
+            Key code snippet
+          </button>
+
+          <button
+            class="mr-4 rounded-md border border-gray-200 px-3 py-1.5 text-xs font-medium text-gray-600 transition-colors hover:bg-gray-50 hover:text-gray-900"
+            type="button"
+            :title="codeBesideDemo ? 'Show code below the demo' : 'Show code beside the demo'"
+            @click="toggleCodePosition"
+          >
+            {{ codeBesideDemo ? 'Dock below' : 'Dock right' }}
+          </button>
+        </div>
+        <div v-if="codeOpen" class="px-8 pb-4 bg-slate-950">
+          <pre
+            class="overflow-auto rounded-lg bg-slate-950 p-4 text-[12px] leading-5 whitespace-pre-wrap text-slate-300"
+          ><code>{{ codeSnippet || '// No snippet provided for this demo yet.' }}</code></pre>
+        </div>
+      </aside>
+    </div>
+
+    <!-- The code can open below the demo or beside it. -->
+    <footer v-if="!codeBesideDemo" class="shrink-0 border-t border-gray-200 bg-white">
+      <div class="flex items-center">
+        <button
+          class="flex flex-1 cursor-pointer items-center gap-2 border-0 bg-transparent px-8 py-3 text-left text-[13px] font-medium text-gray-700 transition-colors duration-150 hover:bg-gray-50"
+          type="button"
+          @click="codeOpen = !codeOpen"
+        >
+          <svg
+            class="size-3 transition-transform"
+            :class="{ 'rotate-90': codeOpen }"
+            viewBox="0 0 12 12"
+            fill="none"
+            stroke="currentColor"
+            stroke-width="1.8"
+            aria-hidden="true"
+          >
+            <path d="m4 2 4 4-4 4" />
+          </svg>
+          Key code snippet
+        </button>
+
+        <button
+          class="mr-4 rounded-md border border-gray-200 px-3 py-1.5 text-xs font-medium text-gray-600 transition-colors hover:bg-gray-50 hover:text-gray-900"
+          type="button"
+          :title="codeBesideDemo ? 'Show code below the demo' : 'Show code beside the demo'"
+          @click="toggleCodePosition"
+        >
+          {{ codeBesideDemo ? 'Dock below' : 'Dock right' }}
+        </button>
+      </div>
+
       <div v-if="codeOpen" class="px-8 pb-4">
         <pre
           class="max-h-72 overflow-auto rounded-lg bg-slate-950 p-4 text-[12px] leading-5 whitespace-pre-wrap text-slate-300"
@@ -66,7 +137,6 @@ const library = computed(() => getLibraryByRoute(route.path))
     </footer>
   </div>
 
-  <!-- Fallback if route doesn't match any library -->
   <div v-else class="flex h-screen items-center justify-center text-sm text-gray-400">
     <p>Library not found for this route.</p>
   </div>
