@@ -31,8 +31,8 @@ export const LIBRARIES: LibraryRoute[] = [
     description:
       'Add one directive and DOM mutations just animate. No configuration, no keyframes, no effort.',
     category: 'Zero-config',
-    component: () => import('../components/DemoPlaceholder.vue'),
-    source: () => import('../components/DemoPlaceholder.vue?raw'),
+    component: () => import('../demos/AutoAnimate.vue'),
+    source: () => import('../demos/AutoAnimate.vue?raw'),
   },
   {
     id: 'vueuse-motion',
@@ -43,8 +43,8 @@ export const LIBRARIES: LibraryRoute[] = [
     description:
       'Composable-based animations with spring physics and scroll-triggered reveals. Built for Vue 3.',
     category: 'Composable',
-    component: () => import('../components/DemoPlaceholder.vue'),
-    source: () => import('../components/DemoPlaceholder.vue?raw'),
+    component: () => import('../demos/VueuseMotion.vue'),
+    source: () => import('../demos/VueuseMotion.vue?raw'),
   },
   {
     id: 'gsap',
@@ -55,8 +55,8 @@ export const LIBRARIES: LibraryRoute[] = [
     description:
       'The professional-grade animation platform. Timeline control, stagger, ScrollTrigger, SVG morphing — the full toolkit.',
     category: 'Power tool',
-    component: () => import('../components/DemoPlaceholder.vue'),
-    source: () => import('../components/DemoPlaceholder.vue?raw'),
+    component: () => import('../demos/VueGASP.vue'),
+    source: () => import('../demos/VueGASP.vue?raw'),
   },
   {
     id: 'motion-one',
