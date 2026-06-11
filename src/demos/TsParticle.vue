@@ -74,15 +74,10 @@ const particlesOptions = {
   <div class="relative h-full w-full overflow-hidden rounded-3xl">
     <!-- Particle background -->
     <vue-particles id="constellation" :options="particlesOptions" class="absolute inset-0" />
-
     <!-- Content -->
-    <div
-      class="relative z-10 flex h-full flex-col items-center justify-center px-8 text-center text-white"
-    >
+    <div class="relative flex h-full flex-col items-center justify-center text-center text-white">
       <div class="text-6xl">✨</div>
-
       <h1 class="mt-4 text-5xl font-bold">Explore the Universe</h1>
-
       <p class="mt-4 max-w-lg text-slate-300">
         Move your cursor around to create dynamic star connections between particles.
       </p>

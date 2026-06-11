@@ -25,31 +25,15 @@ onBeforeUnmount(() => {
   >
     <div class="flex max-w-sm flex-col items-center text-center">
       <div
-        class="mb-5 flex size-14 items-center justify-center rounded-2xl bg-indigo-50 text-indigo-600"
+        class="mb-5 flex size-14 items-center justify-center rounded-2xl bg-indigo-50 cursor-pointer transition hover:bg-indigo-100"
+        @click="copyInviteLink"
       >
-        <svg
-          class="size-6"
-          viewBox="0 0 24 24"
-          fill="none"
-          stroke="currentColor"
-          stroke-width="2"
-          aria-hidden="true"
-        >
-          <path d="M7 17 17 7M8 7h9v9" />
-        </svg>
+        ↗️
       </div>
 
       <p class="mb-6 text-sm leading-6 text-slate-500">
         Share this workspace with someone from your team.
       </p>
-
-      <button
-        class="rounded-lg bg-indigo-600 px-5 py-2.5 text-sm font-semibold text-white shadow-sm transition-colors hover:bg-indigo-700 focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-indigo-600"
-        type="button"
-        @click="copyInviteLink"
-      >
-        Copy invite link
-      </button>
     </div>
 
     <!-- Transition handles the toast entering and leaving. -->
@@ -66,21 +50,7 @@ onBeforeUnmount(() => {
         class="absolute bottom-6 flex items-center gap-2 rounded-full bg-slate-900 px-4 py-2.5 text-sm font-medium text-white shadow-lg"
         role="status"
       >
-        <span
-          class="flex size-5 items-center justify-center rounded-full bg-emerald-400 text-slate-900"
-        >
-          <svg
-            class="size-3"
-            viewBox="0 0 12 12"
-            fill="none"
-            stroke="currentColor"
-            stroke-width="2"
-            aria-hidden="true"
-          >
-            <path d="m2.5 6 2.25 2.25L9.5 3.5" />
-          </svg>
-        </span>
-        Invite link copied
+        ✅ Invite link copied
       </div>
     </Transition>
   </div>

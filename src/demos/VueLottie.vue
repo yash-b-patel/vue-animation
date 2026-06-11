@@ -13,14 +13,9 @@ const showReward = ref(false)
 
 function completeChallenge() {
   xp.value += 250
-
-  if (xp.value >= 1500) {
-    level.value++
-  }
-
+  if (xp.value >= 1500) level.value++
   // Replay animation
   showReward.value = false
-
   requestAnimationFrame(() => {
     showReward.value = true
   })
@@ -32,9 +27,7 @@ function completeChallenge() {
     <!-- Profile summary -->
     <div class="text-center">
       <div class="text-5xl">🚀</div>
-
       <h2 class="mt-4 text-2xl font-bold">Developer Progress</h2>
-
       <p class="mt-2 text-slate-500">Complete challenges and earn XP.</p>
     </div>
 
@@ -42,18 +35,11 @@ function completeChallenge() {
     <div class="mt-6 grid grid-cols-2 gap-4">
       <div class="rounded-xl bg-slate-100 p-4 text-center">
         <p class="text-sm text-slate-500">Level</p>
-
-        <p class="text-3xl font-bold">
-          {{ level }}
-        </p>
+        <p class="text-3xl font-bold">{{ level }}</p>
       </div>
-
       <div class="rounded-xl bg-slate-100 p-4 text-center">
         <p class="text-sm text-slate-500">XP</p>
-
-        <p class="text-3xl font-bold">
-          {{ xp }}
-        </p>
+        <p class="text-3xl font-bold">{{ xp }}</p>
       </div>
     </div>
 
@@ -68,7 +54,6 @@ function completeChallenge() {
           :loop="false"
           :auto-play="true"
         />
-
         <p class="text-center font-semibold text-emerald-600">+250 XP Earned!</p>
       </div>
     </Transition>
