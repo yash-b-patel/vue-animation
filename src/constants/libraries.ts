@@ -75,12 +75,12 @@ export const LIBRARIES: LibraryRoute[] = [
     name: 'Vue Typed',
     path: '/vue-typed',
     version: '2.x',
-    npm: 'vue3-typed-js',
+    npm: 'typed.js',
     description:
       'Typewriter effect component. Cycles through strings with configurable speed, backspace, and loop behavior.',
     category: 'Text effect',
-    component: () => import('../components/DemoPlaceholder.vue'),
-    source: () => import('../components/DemoPlaceholder.vue?raw'),
+    component: () => import('../demos/VueTyped.vue'),
+    source: () => import('../demos/VueTyped.vue?raw'),
   },
   {
     id: 'vue-tilt',
