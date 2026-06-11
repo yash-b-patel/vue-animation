@@ -63,12 +63,12 @@ export const LIBRARIES: LibraryRoute[] = [
     name: 'Motion One',
     path: '/motion-one',
     version: '10.x',
-    npm: 'motion',
+    npm: 'motion-v',
     description:
       'Lightweight animation library built on the Web Animations API. 3kb with timeline and stagger support.',
     category: 'Lightweight',
-    component: () => import('../components/DemoPlaceholder.vue'),
-    source: () => import('../components/DemoPlaceholder.vue?raw'),
+    component: () => import('../demos/MotionOne.vue'),
+    source: () => import('../demos/MotionOne.vue?raw'),
   },
   {
     id: 'vue-typed',
