@@ -103,8 +103,8 @@ export const LIBRARIES: LibraryRoute[] = [
     description:
       'Play After Effects animations exported as JSON. High-quality micro-animations for UI feedback states.',
     category: 'Micro-animation',
-    component: () => import('../components/DemoPlaceholder.vue'),
-    source: () => import('../components/DemoPlaceholder.vue?raw'),
+    component: () => import('../demos/VueLottie.vue'),
+    source: () => import('../demos/VueLottie.vue?raw'),
   },
   {
     id: 'ts-particles',
