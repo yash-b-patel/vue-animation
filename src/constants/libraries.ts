@@ -87,12 +87,12 @@ export const LIBRARIES: LibraryRoute[] = [
     name: 'Vue Tilt.js',
     path: '/vue-tilt',
     version: '1.x',
-    npm: 'vue-tilt.js',
+    npm: 'vanilla-tilt',
     description:
       'Mouse-tracking parallax tilt on any element. Adds depth and a premium feel to cards and images.',
     category: '3D / Hover',
-    component: () => import('../components/DemoPlaceholder.vue'),
-    source: () => import('../components/DemoPlaceholder.vue?raw'),
+    component: () => import('../demos/VueTilt.vue'),
+    source: () => import('../demos/VueTilt.vue?raw'),
   },
   {
     id: 'vue-lottie',
