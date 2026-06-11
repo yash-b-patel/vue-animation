@@ -4,8 +4,8 @@ import { useRoute } from 'vue-router'
 import { getLibraryByRoute } from '@/constants/libraries'
 
 const route = useRoute()
-const codeOpen = ref(false)
-const codeBesideDemo = ref(false)
+const codeOpen = ref(true)
+const codeBesideDemo = ref(true)
 const codeSnippet = ref('')
 
 const library = computed(() => getLibraryByRoute(route.path))
