@@ -115,8 +115,8 @@ export const LIBRARIES: LibraryRoute[] = [
     description:
       'Highly configurable particle engine. Confetti bursts, network graphs, snow, fire — all driven by JSON config.',
     category: 'Particles',
-    component: () => import('../components/DemoPlaceholder.vue'),
-    source: () => import('../components/DemoPlaceholder.vue?raw'),
+    component: () => import('../demos/TsParticle.vue'),
+    source: () => import('../demos/TsParticle.vue?raw'),
   },
 ]
 
