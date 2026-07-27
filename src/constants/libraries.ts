@@ -118,6 +118,78 @@ export const LIBRARIES: LibraryRoute[] = [
     component: () => import('../demos/TsParticle.vue'),
     source: () => import('../demos/TsParticle.vue?raw'),
   },
+  {
+    id: 'vue-animate',
+    name: 'Vue Animate',
+    path: '/vue-animate',
+    version: '3.x',
+    npm: '@asika32764/vue-animate',
+    description:
+      'Animate.css classes packaged for Vue transitions. Works with Transition and TransitionGroup names.',
+    category: 'CSS transitions',
+    component: () => import('../demos/VueAnimate.vue'),
+    source: () => import('../demos/VueAnimate.vue?raw'),
+  },
+  {
+    id: 'vuenime',
+    name: 'Vuenime',
+    path: '/vuenime',
+    version: '1.x',
+    npm: 'vuenime',
+    description:
+      'Anime.js-powered value tweening for Vue. Bind a target value and render the interpolated number.',
+    category: 'Value tween',
+    component: () => import('../demos/Vuenime.vue'),
+    source: () => import('../demos/Vuenime.vue?raw'),
+  },
+  {
+    id: 'vue-smooth-scroll',
+    name: 'Vue Smooth Scroll',
+    path: '/vue-smooth-scroll',
+    version: '0.8.x',
+    npm: 'vue3-smooth-scroll',
+    description:
+      'Vue 3 directive for smooth in-page anchor navigation with offsets, durations, and containers.',
+    category: 'Scroll',
+    component: () => import('../demos/VueSmoothScroll.vue'),
+    source: () => import('../demos/VueSmoothScroll.vue?raw'),
+  },
+  {
+    id: 'vue-flipbook',
+    name: 'Vue Flipbook',
+    path: '/vue-flipbook',
+    version: '1.0.0-beta.x',
+    npm: 'flipbook-vue',
+    description:
+      '3D image page flipping component for catalogs, brochures, previews, and lightweight magazines.',
+    category: '3D / Pages',
+    component: () => import('../demos/VueFlipbook.vue'),
+    source: () => import('../demos/VueFlipbook.vue?raw'),
+  },
+  {
+    id: 'vue-morphling',
+    name: 'Vue-Morphling',
+    path: '/vue-morphling',
+    version: '1.x',
+    npm: 'vue-morphling',
+    description:
+      'A formatting utility collection with currency, date, file-size, and text helpers. Not an animation library.',
+    category: 'Formatting',
+    component: () => import('../demos/VueMorphling.vue'),
+    source: () => import('../demos/VueMorphling.vue?raw'),
+  },
+  {
+    id: 'vue-page-transition',
+    name: 'Vue Page Transition',
+    path: '/vue-page-transition',
+    version: '0.1.x',
+    npm: 'vue3-page-transition',
+    description:
+      'Vue 3 route transition wrapper with named presets such as fade, zoom, flips, and overlays.',
+    category: 'Route transition',
+    component: () => import('../demos/VuePageTransition.vue'),
+    source: () => import('../demos/VuePageTransition.vue?raw'),
+  },
 ]
 
 export function getLibraryByRoute(path: string) {

@@ -5,6 +5,7 @@ import router from './router'
 import './assets/main.css'
 
 import { MotionPlugin } from '@vueuse/motion'
+import VueSmoothScroll from 'vue3-smooth-scroll'
 
 import Particles from '@tsparticles/vue3'
 import { loadSlim } from '@tsparticles/slim'
@@ -14,6 +15,10 @@ const app = createApp(App)
 
 app.use(router)
 app.use(MotionPlugin)
+app.use(VueSmoothScroll, {
+  duration: 650,
+  updateHistory: false,
+})
 
 app.use(Particles, {
   init: async (engine: Engine) => {
