@@ -32,7 +32,7 @@ const pages = [
 </script>
 
 <template>
-  <div class="mx-auto w-full max-w-2xl rounded-3xl bg-white p-8 shadow-xl">
+  <div class="mx-auto w-full max-w-2xl rounded-3xl bg-white p-8 shadow-xl relative">
     <div class="mb-6">
       <p class="text-sm font-medium text-violet-600">Vue Flipbook</p>
       <h2 class="mt-2 text-2xl font-bold text-slate-900">Product Brief</h2>
@@ -45,25 +45,28 @@ const pages = [
       v-slot="{ flipLeft, flipRight, canFlipLeft, canFlipRight, page, numPages }: SlotScope"
       class="flipbook-demo"
       :pages="pages"
+      :single-page="true"
     >
-      <div class="flex items-center justify-between rounded-2xl bg-slate-100 p-3">
-        <button
-          class="rounded-xl bg-white px-4 py-2 text-sm font-medium text-slate-700 shadow-sm transition disabled:cursor-not-allowed disabled:opacity-40"
-          type="button"
-          :disabled="!canFlipLeft"
-          @click="flipLeft"
-        >
-          Previous
-        </button>
-        <p class="text-sm font-semibold text-slate-600">Page {{ page }} of {{ numPages }}</p>
-        <button
-          class="rounded-xl bg-violet-600 px-4 py-2 text-sm font-medium text-white shadow-sm transition hover:bg-violet-700 disabled:cursor-not-allowed disabled:opacity-40"
-          type="button"
-          :disabled="!canFlipRight"
-          @click="flipRight"
-        >
-          Next
-        </button>
+      <div class="absolute -bottom-16 left-1/2 transform -translate-x-1/2 w-full">
+        <div class="flex items-center justify-between rounded-2xl bg-white p-3">
+          <button
+            class="rounded-xl bg-violet-600 px-4 py-2 text-sm font-medium text-white shadow-sm transition hover:bg-violet-700 disabled:cursor-not-allowed disabled:opacity-40"
+            type="button"
+            :disabled="!canFlipLeft"
+            @click="flipLeft"
+          >
+            Previous
+          </button>
+          <p class="text-sm font-semibold text-slate-600">Page {{ page }} of {{ numPages }}</p>
+          <button
+            class="rounded-xl bg-violet-600 px-4 py-2 text-sm font-medium text-white shadow-sm transition hover:bg-violet-700 disabled:cursor-not-allowed disabled:opacity-40"
+            type="button"
+            :disabled="!canFlipRight"
+            @click="flipRight"
+          >
+            Next
+          </button>
+        </div>
       </div>
     </Flipbook>
   </div>
