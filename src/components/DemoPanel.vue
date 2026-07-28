@@ -7,8 +7,26 @@ const route = useRoute()
 const codeOpen = ref(true)
 const codeBesideDemo = ref(true)
 const codeSnippet = ref('')
+const copied = ref(false)
 
 const library = computed(() => getLibraryByRoute(route.path))
+
+const embedUrl = computed(() => {
+  if (!library.value) return ''
+  return `${window.location.origin}/embed${library.value.path}`
+})
+
+async function copyEmbedUrl() {
+  if (!embedUrl.value) return
+  try {
+    await navigator.clipboard.writeText(embedUrl.value)
+    copied.value = true
+    setTimeout(() => (copied.value = false), 1500)
+  } catch {
+    // Clipboard API can fail on non-HTTPS/localhost-insecure contexts or if permission is denied.
+    console.error('Could not copy embed URL — clipboard permission denied or unavailable.')
+  }
+}
 
 watch(
   () => library.value,
@@ -47,6 +65,24 @@ function toggleCodePosition() {
           >
             npm i {{ library.npm }}
           </span>
+          <button
+            type="button"
+            class="ml-auto flex items-center gap-1.5 rounded-full border border-gray-200 bg-white px-3 py-1 text-[11px] font-medium text-gray-600 transition-colors hover:bg-gray-50 hover:text-gray-900"
+            @click="copyEmbedUrl"
+          >
+            <svg
+              class="size-3"
+              viewBox="0 0 16 16"
+              fill="none"
+              stroke="currentColor"
+              stroke-width="1.5"
+              aria-hidden="true"
+            >
+              <rect x="5" y="5" width="8" height="8" rx="1.5" />
+              <path d="M3 11V3.5A0.5 0.5 0 0 1 3.5 3H11" />
+            </svg>
+            {{ copied ? 'Copied!' : 'Copy embed URL' }}
+          </button>
         </div>
         <h1 class="mb-1.5 text-[22px] leading-[1.2] font-bold text-gray-900">
           {{ library.name }}
